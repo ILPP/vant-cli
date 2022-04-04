@@ -1,15 +1,26 @@
 {
-  "name": "libx-cli",
+  "name": "@libx/ts-cli",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./lib/index.js",
+  "bin": {
+    "libx-cli": "./bin/cli.js"
+  },
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build": "npm run eslint && npm run prettier && tsc --build",
+    "eslint": "eslint --fix src --ext .ts --max-warnings=0",
+    "prettier": "prettier --write \"src/**/*.ts\""
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["typescript","cli","typescript 脚手架","ts 脚手架","ts-cli","脚手架"],
+  "author": "李炳鑫",
   "license": "ISC",
+  "files": ["package.json","README.md","lib"],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
@@ -21,5 +32,16 @@
     "prettier": "^2.6.2",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.6.3"
+  },
+  "lint-staged": {
+    "*.{js,ts}": "eslint --fix",
+    "*.{js,jsx,ts,tsx,md,html,css}": "prettier --write"
+  },
+  "dependencies": {
+    "chalk": "^5.0.1",
+    "clear-console": "^1.1.0",
+    "commander": "^9.1.0",
+    "inquirer": "^8.2.2",
+    "shelljs": "^0.8.5"
   }
 }
